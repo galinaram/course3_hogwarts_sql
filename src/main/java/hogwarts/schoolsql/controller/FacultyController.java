@@ -6,11 +6,6 @@ import org.springframework.web.bind.annotation.*;
 import hogwarts.schoolsql.model.Faculty;
 import hogwarts.schoolsql.service.FacultyService;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.List;
-import java.util.Objects;
-
 @RestController
 @RequestMapping("faculty")
 public class FacultyController {
@@ -47,15 +42,13 @@ public class FacultyController {
     }
 
     @GetMapping
-    public Collection<Faculty> getFacultyWithOneColor (@RequestParam String color){
-        List<Faculty> facultyCollection = new ArrayList<>();
-        int i = 0;
-        while (facultyService.findFaculty(i)!= null){
-            if(Objects.equals(facultyService.findFaculty(i).getColor(), color)){
-                facultyCollection.add(facultyService.findFaculty(i));
-
-            }
+    public ResponseEntity findFaculty(@RequestParam String name, @RequestParam String color){
+        if(name!=null && !name.isBlank()){
+            return ResponseEntity.ok(facultyService.findByName(name));
         }
-        return facultyCollection;
+        if(color!=null && !color.isBlank()){
+            return ResponseEntity.ok(facultyService.findByColor(color));
+        }
+        return ResponseEntity.ok(facultyService.getAllFaculty());
     }
 }

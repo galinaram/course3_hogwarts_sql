@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import hogwarts.schoolsql.model.Faculty;
 
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 @Service
@@ -22,6 +23,16 @@ public class FacultyService {
     }
     public void deleteFaculty(long id){
         facultyRepository.deleteById(id);
+    }
+    public Collection<Faculty> getAllFaculty(){
+        return facultyRepository.findAll();
+    }
+
+    public Collection<Faculty> findByName(String name){
+        return facultyRepository.findFacultyByName(name);
+    }
+    public Collection<Faculty> findByColor(String color){
+        return facultyRepository.findFacultyByColor(color);
     }
 }
 
