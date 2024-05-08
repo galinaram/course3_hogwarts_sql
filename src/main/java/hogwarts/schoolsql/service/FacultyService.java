@@ -29,10 +29,10 @@ public class FacultyService {
     }
 
     public Collection<Faculty> findByName(String name){
-        return facultyRepository.findFacultyByName(name);
+        return facultyRepository.findFacultyByNameContainsIgnoreCase(name);
     }
     public Collection<Faculty> findByColor(String color){
-        return facultyRepository.findFacultyByColor(color);
+        return facultyRepository.findFacultyByColorContainsIgnoreCase(color);
     }
 }
 

@@ -17,7 +17,7 @@ public class StudentService {
         return studentRepository.save(student);
     }
     public Student findStudent(long id){
-        return studentRepository.findById(id).get();
+        return studentRepository.findById(id).orElse(null);
     }
     public Student editStudent(Student student){
         return studentRepository.save(student);

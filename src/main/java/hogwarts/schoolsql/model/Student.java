@@ -1,8 +1,8 @@
 package hogwarts.schoolsql.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.Collection;
 
 @Entity
 public class Student {
@@ -10,8 +10,16 @@ public class Student {
     @GeneratedValue
     private Long id;
 
-    private final String name;
-    private final int age;
+    private String name;
+    private int age;
+
+    @ManyToOne
+    @JoinColumn(name = "faculty_id")
+    private Faculty faculty;
+
+    public Student() {
+    }
+
     public Student(Long id, String name, int age){
         this.id = id;
         this.name = name;
@@ -30,4 +38,5 @@ public class Student {
         this.id = id;
     }
 }
+
 

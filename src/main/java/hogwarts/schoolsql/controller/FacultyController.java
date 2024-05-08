@@ -42,7 +42,8 @@ public class FacultyController {
     }
 
     @GetMapping
-    public ResponseEntity findFaculty(@RequestParam String name, @RequestParam String color){
+    public ResponseEntity findFaculty(@RequestParam(required = false) String name,
+                                      @RequestParam(required = false) String color){
         if(name!=null && !name.isBlank()){
             return ResponseEntity.ok(facultyService.findByName(name));
         }
